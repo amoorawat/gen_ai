@@ -52,7 +52,10 @@ export const pullCommit = async (projectId: string) => {
     projectId,
     commitHashes,
   );
-  
+
+  console.log("UNPROCESSED COMMITS:", unprocessedCommit.length);
+  console.log("UNPROCESSED COMMITS DATA:", unprocessedCommit);
+
   const summaryResponse = await Promise.allSettled(
     unprocessedCommit.map((commit) => {
       return summariseCommit(githubUrl, commit.commitHash as string);
@@ -77,20 +80,29 @@ export const pullCommit = async (projectId: string) => {
         commitDate: new Date(unprocessedCommit[index]!.commitDate),
         summary: summary || "",
       };
-    })
+    }),
   });
   return commits;
 };
 
 async function summariseCommit(githubUrl: string, commitHash: string) {
-  //get the diff, then pass the diff into ai
-  const { data } = await axios.get(`${githubUrl}/commit/${commitHash}.diff`, {
-    headers: {
-      Accept: `application/vnd.github.v3.diff`,
-    },
-  });
+  try {
+    const { data } = await axios.get(`${githubUrl}/commit/${commitHash}.diff`, {
+      headers: {
+        Accept: `application/vnd.github.v3.diff`,
+      },
+    });
 
-  return (await aiSummariseCommit(data)) || "";
+    console.log("DIFF LENGTH:", data.length);
+
+    const summary = await aiSummariseCommit(data);
+    console.log("AI SUMMARY:", summary);
+
+    return summary || "";
+  } catch (error) {
+    console.error("SUMMARISE ERROR:", error);
+    return "";
+  }
 }
 
 async function fetchProjectGithubUrl(projectId: string) {
@@ -106,7 +118,7 @@ async function fetchProjectGithubUrl(projectId: string) {
   if (!project?.githubUrl) {
     throw new Error("Project has no gitHub URL");
   }
-  return { project, githubUrl };
+  return { project, githubUrl: project.githubUrl };
 }
 
 async function filterUnprocessedCommits(

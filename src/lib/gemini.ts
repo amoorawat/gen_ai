@@ -1,9 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
+console.log("Gemini API Key:", process.env.GEMINI_API_KEY ? "Loaded" : "MISSING");
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 const model = genAI.getGenerativeModel({
-    model: `gemini-1.5-flash`
+    model: "gemini-2.5-flash"
 })
+
 
 export const aiSummariseCommit = async (diff: string) => {
     const response = await model.generateContent([

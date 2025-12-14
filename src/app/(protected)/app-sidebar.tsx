@@ -83,7 +83,7 @@ export function AppSideBar() {
             <SidebarMenu>
               {projects?.map((project) => (
 
-                <SidebarMenuItem key={project.name}>
+                <SidebarMenuItem key={project.id}>
                   <SidebarMenuButton asChild>
                     <div onClick={() => {
                       setProjectId(project.id)
