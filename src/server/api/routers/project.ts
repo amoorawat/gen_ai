@@ -1,6 +1,7 @@
 import z from "zod"
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc"
 import { pullCommit } from "@/lib/github"
+import { indexGithubRepo } from "@/lib/github-loader"
 export const projectRouter = createTRPCRouter({
 
     //createProject function
@@ -24,6 +25,7 @@ export const projectRouter = createTRPCRouter({
                 }
             }
         })
+        await indexGithubRepo(project.id, input.githubUrl, input.githubToken)
         await pullCommit(project.id)
         return project
     }),
@@ -46,6 +48,7 @@ export const projectRouter = createTRPCRouter({
             projectId: z.string()
         })
     ).query(async ({ctx, input}) => {
+        pullCommit(input.projectId).then().catch(console.error)
         return await ctx.db.commit.findMany({
             where: {
                 projectId: input.projectId

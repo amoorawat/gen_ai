@@ -33,6 +33,11 @@ export type UserToProject = $Result.DefaultSelection<Prisma.$UserToProjectPayloa
  * 
  */
 export type Commit = $Result.DefaultSelection<Prisma.$CommitPayload>
+/**
+ * Model SourceCodeEmbading
+ * 
+ */
+export type SourceCodeEmbading = $Result.DefaultSelection<Prisma.$SourceCodeEmbadingPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -191,6 +196,16 @@ export class PrismaClient<
     * ```
     */
   get commit(): Prisma.CommitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sourceCodeEmbading`: Exposes CRUD operations for the **SourceCodeEmbading** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SourceCodeEmbadings
+    * const sourceCodeEmbadings = await prisma.sourceCodeEmbading.findMany()
+    * ```
+    */
+  get sourceCodeEmbading(): Prisma.SourceCodeEmbadingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -635,7 +650,8 @@ export namespace Prisma {
     User: 'User',
     Project: 'Project',
     UserToProject: 'UserToProject',
-    Commit: 'Commit'
+    Commit: 'Commit',
+    SourceCodeEmbading: 'SourceCodeEmbading'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -654,7 +670,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "project" | "userToProject" | "commit"
+      modelProps: "user" | "project" | "userToProject" | "commit" | "sourceCodeEmbading"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -954,6 +970,80 @@ export namespace Prisma {
           }
         }
       }
+      SourceCodeEmbading: {
+        payload: Prisma.$SourceCodeEmbadingPayload<ExtArgs>
+        fields: Prisma.SourceCodeEmbadingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SourceCodeEmbadingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SourceCodeEmbadingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          findFirst: {
+            args: Prisma.SourceCodeEmbadingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SourceCodeEmbadingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          findMany: {
+            args: Prisma.SourceCodeEmbadingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>[]
+          }
+          create: {
+            args: Prisma.SourceCodeEmbadingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          createMany: {
+            args: Prisma.SourceCodeEmbadingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SourceCodeEmbadingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>[]
+          }
+          delete: {
+            args: Prisma.SourceCodeEmbadingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          update: {
+            args: Prisma.SourceCodeEmbadingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          deleteMany: {
+            args: Prisma.SourceCodeEmbadingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SourceCodeEmbadingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SourceCodeEmbadingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>[]
+          }
+          upsert: {
+            args: Prisma.SourceCodeEmbadingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SourceCodeEmbadingPayload>
+          }
+          aggregate: {
+            args: Prisma.SourceCodeEmbadingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSourceCodeEmbading>
+          }
+          groupBy: {
+            args: Prisma.SourceCodeEmbadingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SourceCodeEmbadingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SourceCodeEmbadingCountArgs<ExtArgs>
+            result: $Utils.Optional<SourceCodeEmbadingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1054,6 +1144,7 @@ export namespace Prisma {
     project?: ProjectOmit
     userToProject?: UserToProjectOmit
     commit?: CommitOmit
+    sourceCodeEmbading?: SourceCodeEmbadingOmit
   }
 
   /* Types for Logging */
@@ -1167,11 +1258,13 @@ export namespace Prisma {
   export type ProjectCountOutputType = {
     userToProjects: number
     commits: number
+    sourceCodeEmbedding: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userToProjects?: boolean | ProjectCountOutputTypeCountUserToProjectsArgs
     commits?: boolean | ProjectCountOutputTypeCountCommitsArgs
+    sourceCodeEmbedding?: boolean | ProjectCountOutputTypeCountSourceCodeEmbeddingArgs
   }
 
   // Custom InputTypes
@@ -1197,6 +1290,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountCommitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommitWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountSourceCodeEmbeddingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SourceCodeEmbadingWhereInput
   }
 
 
@@ -2521,6 +2621,7 @@ export namespace Prisma {
     deletedAt?: boolean
     userToProjects?: boolean | Project$userToProjectsArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
+    sourceCodeEmbedding?: boolean | Project$sourceCodeEmbeddingArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -2555,6 +2656,7 @@ export namespace Prisma {
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userToProjects?: boolean | Project$userToProjectsArgs<ExtArgs>
     commits?: boolean | Project$commitsArgs<ExtArgs>
+    sourceCodeEmbedding?: boolean | Project$sourceCodeEmbeddingArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2565,6 +2667,7 @@ export namespace Prisma {
     objects: {
       userToProjects: Prisma.$UserToProjectPayload<ExtArgs>[]
       commits: Prisma.$CommitPayload<ExtArgs>[]
+      sourceCodeEmbedding: Prisma.$SourceCodeEmbadingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2969,6 +3072,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     userToProjects<T extends Project$userToProjectsArgs<ExtArgs> = {}>(args?: Subset<T, Project$userToProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserToProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     commits<T extends Project$commitsArgs<ExtArgs> = {}>(args?: Subset<T, Project$commitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sourceCodeEmbedding<T extends Project$sourceCodeEmbeddingArgs<ExtArgs> = {}>(args?: Subset<T, Project$sourceCodeEmbeddingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3437,6 +3541,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommitScalarFieldEnum | CommitScalarFieldEnum[]
+  }
+
+  /**
+   * Project.sourceCodeEmbedding
+   */
+  export type Project$sourceCodeEmbeddingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    where?: SourceCodeEmbadingWhereInput
+    orderBy?: SourceCodeEmbadingOrderByWithRelationInput | SourceCodeEmbadingOrderByWithRelationInput[]
+    cursor?: SourceCodeEmbadingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SourceCodeEmbadingScalarFieldEnum | SourceCodeEmbadingScalarFieldEnum[]
   }
 
   /**
@@ -5648,6 +5776,1064 @@ export namespace Prisma {
 
 
   /**
+   * Model SourceCodeEmbading
+   */
+
+  export type AggregateSourceCodeEmbading = {
+    _count: SourceCodeEmbadingCountAggregateOutputType | null
+    _min: SourceCodeEmbadingMinAggregateOutputType | null
+    _max: SourceCodeEmbadingMaxAggregateOutputType | null
+  }
+
+  export type SourceCodeEmbadingMinAggregateOutputType = {
+    id: string | null
+    fileName: string | null
+    sourceCode: string | null
+    summary: string | null
+    projectId: string | null
+  }
+
+  export type SourceCodeEmbadingMaxAggregateOutputType = {
+    id: string | null
+    fileName: string | null
+    sourceCode: string | null
+    summary: string | null
+    projectId: string | null
+  }
+
+  export type SourceCodeEmbadingCountAggregateOutputType = {
+    id: number
+    fileName: number
+    sourceCode: number
+    summary: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type SourceCodeEmbadingMinAggregateInputType = {
+    id?: true
+    fileName?: true
+    sourceCode?: true
+    summary?: true
+    projectId?: true
+  }
+
+  export type SourceCodeEmbadingMaxAggregateInputType = {
+    id?: true
+    fileName?: true
+    sourceCode?: true
+    summary?: true
+    projectId?: true
+  }
+
+  export type SourceCodeEmbadingCountAggregateInputType = {
+    id?: true
+    fileName?: true
+    sourceCode?: true
+    summary?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type SourceCodeEmbadingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SourceCodeEmbading to aggregate.
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SourceCodeEmbadings to fetch.
+     */
+    orderBy?: SourceCodeEmbadingOrderByWithRelationInput | SourceCodeEmbadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SourceCodeEmbadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SourceCodeEmbadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SourceCodeEmbadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SourceCodeEmbadings
+    **/
+    _count?: true | SourceCodeEmbadingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SourceCodeEmbadingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SourceCodeEmbadingMaxAggregateInputType
+  }
+
+  export type GetSourceCodeEmbadingAggregateType<T extends SourceCodeEmbadingAggregateArgs> = {
+        [P in keyof T & keyof AggregateSourceCodeEmbading]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSourceCodeEmbading[P]>
+      : GetScalarType<T[P], AggregateSourceCodeEmbading[P]>
+  }
+
+
+
+
+  export type SourceCodeEmbadingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SourceCodeEmbadingWhereInput
+    orderBy?: SourceCodeEmbadingOrderByWithAggregationInput | SourceCodeEmbadingOrderByWithAggregationInput[]
+    by: SourceCodeEmbadingScalarFieldEnum[] | SourceCodeEmbadingScalarFieldEnum
+    having?: SourceCodeEmbadingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SourceCodeEmbadingCountAggregateInputType | true
+    _min?: SourceCodeEmbadingMinAggregateInputType
+    _max?: SourceCodeEmbadingMaxAggregateInputType
+  }
+
+  export type SourceCodeEmbadingGroupByOutputType = {
+    id: string
+    fileName: string
+    sourceCode: string
+    summary: string
+    projectId: string
+    _count: SourceCodeEmbadingCountAggregateOutputType | null
+    _min: SourceCodeEmbadingMinAggregateOutputType | null
+    _max: SourceCodeEmbadingMaxAggregateOutputType | null
+  }
+
+  type GetSourceCodeEmbadingGroupByPayload<T extends SourceCodeEmbadingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SourceCodeEmbadingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SourceCodeEmbadingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SourceCodeEmbadingGroupByOutputType[P]>
+            : GetScalarType<T[P], SourceCodeEmbadingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SourceCodeEmbadingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileName?: boolean
+    sourceCode?: boolean
+    summary?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sourceCodeEmbading"]>
+
+  export type SourceCodeEmbadingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileName?: boolean
+    sourceCode?: boolean
+    summary?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sourceCodeEmbading"]>
+
+  export type SourceCodeEmbadingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileName?: boolean
+    sourceCode?: boolean
+    summary?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sourceCodeEmbading"]>
+
+  export type SourceCodeEmbadingSelectScalar = {
+    id?: boolean
+    fileName?: boolean
+    sourceCode?: boolean
+    summary?: boolean
+    projectId?: boolean
+  }
+
+  export type SourceCodeEmbadingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileName" | "sourceCode" | "summary" | "projectId", ExtArgs["result"]["sourceCodeEmbading"]>
+  export type SourceCodeEmbadingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type SourceCodeEmbadingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type SourceCodeEmbadingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $SourceCodeEmbadingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SourceCodeEmbading"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fileName: string
+      sourceCode: string
+      summary: string
+      projectId: string
+    }, ExtArgs["result"]["sourceCodeEmbading"]>
+    composites: {}
+  }
+
+  type SourceCodeEmbadingGetPayload<S extends boolean | null | undefined | SourceCodeEmbadingDefaultArgs> = $Result.GetResult<Prisma.$SourceCodeEmbadingPayload, S>
+
+  type SourceCodeEmbadingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SourceCodeEmbadingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SourceCodeEmbadingCountAggregateInputType | true
+    }
+
+  export interface SourceCodeEmbadingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SourceCodeEmbading'], meta: { name: 'SourceCodeEmbading' } }
+    /**
+     * Find zero or one SourceCodeEmbading that matches the filter.
+     * @param {SourceCodeEmbadingFindUniqueArgs} args - Arguments to find a SourceCodeEmbading
+     * @example
+     * // Get one SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SourceCodeEmbadingFindUniqueArgs>(args: SelectSubset<T, SourceCodeEmbadingFindUniqueArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SourceCodeEmbading that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SourceCodeEmbadingFindUniqueOrThrowArgs} args - Arguments to find a SourceCodeEmbading
+     * @example
+     * // Get one SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SourceCodeEmbadingFindUniqueOrThrowArgs>(args: SelectSubset<T, SourceCodeEmbadingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SourceCodeEmbading that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingFindFirstArgs} args - Arguments to find a SourceCodeEmbading
+     * @example
+     * // Get one SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SourceCodeEmbadingFindFirstArgs>(args?: SelectSubset<T, SourceCodeEmbadingFindFirstArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SourceCodeEmbading that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingFindFirstOrThrowArgs} args - Arguments to find a SourceCodeEmbading
+     * @example
+     * // Get one SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SourceCodeEmbadingFindFirstOrThrowArgs>(args?: SelectSubset<T, SourceCodeEmbadingFindFirstOrThrowArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SourceCodeEmbadings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SourceCodeEmbadings
+     * const sourceCodeEmbadings = await prisma.sourceCodeEmbading.findMany()
+     * 
+     * // Get first 10 SourceCodeEmbadings
+     * const sourceCodeEmbadings = await prisma.sourceCodeEmbading.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sourceCodeEmbadingWithIdOnly = await prisma.sourceCodeEmbading.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SourceCodeEmbadingFindManyArgs>(args?: SelectSubset<T, SourceCodeEmbadingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SourceCodeEmbading.
+     * @param {SourceCodeEmbadingCreateArgs} args - Arguments to create a SourceCodeEmbading.
+     * @example
+     * // Create one SourceCodeEmbading
+     * const SourceCodeEmbading = await prisma.sourceCodeEmbading.create({
+     *   data: {
+     *     // ... data to create a SourceCodeEmbading
+     *   }
+     * })
+     * 
+     */
+    create<T extends SourceCodeEmbadingCreateArgs>(args: SelectSubset<T, SourceCodeEmbadingCreateArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SourceCodeEmbadings.
+     * @param {SourceCodeEmbadingCreateManyArgs} args - Arguments to create many SourceCodeEmbadings.
+     * @example
+     * // Create many SourceCodeEmbadings
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SourceCodeEmbadingCreateManyArgs>(args?: SelectSubset<T, SourceCodeEmbadingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SourceCodeEmbadings and returns the data saved in the database.
+     * @param {SourceCodeEmbadingCreateManyAndReturnArgs} args - Arguments to create many SourceCodeEmbadings.
+     * @example
+     * // Create many SourceCodeEmbadings
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SourceCodeEmbadings and only return the `id`
+     * const sourceCodeEmbadingWithIdOnly = await prisma.sourceCodeEmbading.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SourceCodeEmbadingCreateManyAndReturnArgs>(args?: SelectSubset<T, SourceCodeEmbadingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SourceCodeEmbading.
+     * @param {SourceCodeEmbadingDeleteArgs} args - Arguments to delete one SourceCodeEmbading.
+     * @example
+     * // Delete one SourceCodeEmbading
+     * const SourceCodeEmbading = await prisma.sourceCodeEmbading.delete({
+     *   where: {
+     *     // ... filter to delete one SourceCodeEmbading
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SourceCodeEmbadingDeleteArgs>(args: SelectSubset<T, SourceCodeEmbadingDeleteArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SourceCodeEmbading.
+     * @param {SourceCodeEmbadingUpdateArgs} args - Arguments to update one SourceCodeEmbading.
+     * @example
+     * // Update one SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SourceCodeEmbadingUpdateArgs>(args: SelectSubset<T, SourceCodeEmbadingUpdateArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SourceCodeEmbadings.
+     * @param {SourceCodeEmbadingDeleteManyArgs} args - Arguments to filter SourceCodeEmbadings to delete.
+     * @example
+     * // Delete a few SourceCodeEmbadings
+     * const { count } = await prisma.sourceCodeEmbading.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SourceCodeEmbadingDeleteManyArgs>(args?: SelectSubset<T, SourceCodeEmbadingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SourceCodeEmbadings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SourceCodeEmbadings
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SourceCodeEmbadingUpdateManyArgs>(args: SelectSubset<T, SourceCodeEmbadingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SourceCodeEmbadings and returns the data updated in the database.
+     * @param {SourceCodeEmbadingUpdateManyAndReturnArgs} args - Arguments to update many SourceCodeEmbadings.
+     * @example
+     * // Update many SourceCodeEmbadings
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SourceCodeEmbadings and only return the `id`
+     * const sourceCodeEmbadingWithIdOnly = await prisma.sourceCodeEmbading.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SourceCodeEmbadingUpdateManyAndReturnArgs>(args: SelectSubset<T, SourceCodeEmbadingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SourceCodeEmbading.
+     * @param {SourceCodeEmbadingUpsertArgs} args - Arguments to update or create a SourceCodeEmbading.
+     * @example
+     * // Update or create a SourceCodeEmbading
+     * const sourceCodeEmbading = await prisma.sourceCodeEmbading.upsert({
+     *   create: {
+     *     // ... data to create a SourceCodeEmbading
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SourceCodeEmbading we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SourceCodeEmbadingUpsertArgs>(args: SelectSubset<T, SourceCodeEmbadingUpsertArgs<ExtArgs>>): Prisma__SourceCodeEmbadingClient<$Result.GetResult<Prisma.$SourceCodeEmbadingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SourceCodeEmbadings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingCountArgs} args - Arguments to filter SourceCodeEmbadings to count.
+     * @example
+     * // Count the number of SourceCodeEmbadings
+     * const count = await prisma.sourceCodeEmbading.count({
+     *   where: {
+     *     // ... the filter for the SourceCodeEmbadings we want to count
+     *   }
+     * })
+    **/
+    count<T extends SourceCodeEmbadingCountArgs>(
+      args?: Subset<T, SourceCodeEmbadingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SourceCodeEmbadingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SourceCodeEmbading.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SourceCodeEmbadingAggregateArgs>(args: Subset<T, SourceCodeEmbadingAggregateArgs>): Prisma.PrismaPromise<GetSourceCodeEmbadingAggregateType<T>>
+
+    /**
+     * Group by SourceCodeEmbading.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SourceCodeEmbadingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SourceCodeEmbadingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SourceCodeEmbadingGroupByArgs['orderBy'] }
+        : { orderBy?: SourceCodeEmbadingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SourceCodeEmbadingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSourceCodeEmbadingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SourceCodeEmbading model
+   */
+  readonly fields: SourceCodeEmbadingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SourceCodeEmbading.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SourceCodeEmbadingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SourceCodeEmbading model
+   */
+  interface SourceCodeEmbadingFieldRefs {
+    readonly id: FieldRef<"SourceCodeEmbading", 'String'>
+    readonly fileName: FieldRef<"SourceCodeEmbading", 'String'>
+    readonly sourceCode: FieldRef<"SourceCodeEmbading", 'String'>
+    readonly summary: FieldRef<"SourceCodeEmbading", 'String'>
+    readonly projectId: FieldRef<"SourceCodeEmbading", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SourceCodeEmbading findUnique
+   */
+  export type SourceCodeEmbadingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter, which SourceCodeEmbading to fetch.
+     */
+    where: SourceCodeEmbadingWhereUniqueInput
+  }
+
+  /**
+   * SourceCodeEmbading findUniqueOrThrow
+   */
+  export type SourceCodeEmbadingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter, which SourceCodeEmbading to fetch.
+     */
+    where: SourceCodeEmbadingWhereUniqueInput
+  }
+
+  /**
+   * SourceCodeEmbading findFirst
+   */
+  export type SourceCodeEmbadingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter, which SourceCodeEmbading to fetch.
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SourceCodeEmbadings to fetch.
+     */
+    orderBy?: SourceCodeEmbadingOrderByWithRelationInput | SourceCodeEmbadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SourceCodeEmbadings.
+     */
+    cursor?: SourceCodeEmbadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SourceCodeEmbadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SourceCodeEmbadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SourceCodeEmbadings.
+     */
+    distinct?: SourceCodeEmbadingScalarFieldEnum | SourceCodeEmbadingScalarFieldEnum[]
+  }
+
+  /**
+   * SourceCodeEmbading findFirstOrThrow
+   */
+  export type SourceCodeEmbadingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter, which SourceCodeEmbading to fetch.
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SourceCodeEmbadings to fetch.
+     */
+    orderBy?: SourceCodeEmbadingOrderByWithRelationInput | SourceCodeEmbadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SourceCodeEmbadings.
+     */
+    cursor?: SourceCodeEmbadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SourceCodeEmbadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SourceCodeEmbadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SourceCodeEmbadings.
+     */
+    distinct?: SourceCodeEmbadingScalarFieldEnum | SourceCodeEmbadingScalarFieldEnum[]
+  }
+
+  /**
+   * SourceCodeEmbading findMany
+   */
+  export type SourceCodeEmbadingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter, which SourceCodeEmbadings to fetch.
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SourceCodeEmbadings to fetch.
+     */
+    orderBy?: SourceCodeEmbadingOrderByWithRelationInput | SourceCodeEmbadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SourceCodeEmbadings.
+     */
+    cursor?: SourceCodeEmbadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SourceCodeEmbadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SourceCodeEmbadings.
+     */
+    skip?: number
+    distinct?: SourceCodeEmbadingScalarFieldEnum | SourceCodeEmbadingScalarFieldEnum[]
+  }
+
+  /**
+   * SourceCodeEmbading create
+   */
+  export type SourceCodeEmbadingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SourceCodeEmbading.
+     */
+    data: XOR<SourceCodeEmbadingCreateInput, SourceCodeEmbadingUncheckedCreateInput>
+  }
+
+  /**
+   * SourceCodeEmbading createMany
+   */
+  export type SourceCodeEmbadingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SourceCodeEmbadings.
+     */
+    data: SourceCodeEmbadingCreateManyInput | SourceCodeEmbadingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SourceCodeEmbading createManyAndReturn
+   */
+  export type SourceCodeEmbadingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * The data used to create many SourceCodeEmbadings.
+     */
+    data: SourceCodeEmbadingCreateManyInput | SourceCodeEmbadingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SourceCodeEmbading update
+   */
+  export type SourceCodeEmbadingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SourceCodeEmbading.
+     */
+    data: XOR<SourceCodeEmbadingUpdateInput, SourceCodeEmbadingUncheckedUpdateInput>
+    /**
+     * Choose, which SourceCodeEmbading to update.
+     */
+    where: SourceCodeEmbadingWhereUniqueInput
+  }
+
+  /**
+   * SourceCodeEmbading updateMany
+   */
+  export type SourceCodeEmbadingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SourceCodeEmbadings.
+     */
+    data: XOR<SourceCodeEmbadingUpdateManyMutationInput, SourceCodeEmbadingUncheckedUpdateManyInput>
+    /**
+     * Filter which SourceCodeEmbadings to update
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * Limit how many SourceCodeEmbadings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SourceCodeEmbading updateManyAndReturn
+   */
+  export type SourceCodeEmbadingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * The data used to update SourceCodeEmbadings.
+     */
+    data: XOR<SourceCodeEmbadingUpdateManyMutationInput, SourceCodeEmbadingUncheckedUpdateManyInput>
+    /**
+     * Filter which SourceCodeEmbadings to update
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * Limit how many SourceCodeEmbadings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SourceCodeEmbading upsert
+   */
+  export type SourceCodeEmbadingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SourceCodeEmbading to update in case it exists.
+     */
+    where: SourceCodeEmbadingWhereUniqueInput
+    /**
+     * In case the SourceCodeEmbading found by the `where` argument doesn't exist, create a new SourceCodeEmbading with this data.
+     */
+    create: XOR<SourceCodeEmbadingCreateInput, SourceCodeEmbadingUncheckedCreateInput>
+    /**
+     * In case the SourceCodeEmbading was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SourceCodeEmbadingUpdateInput, SourceCodeEmbadingUncheckedUpdateInput>
+  }
+
+  /**
+   * SourceCodeEmbading delete
+   */
+  export type SourceCodeEmbadingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+    /**
+     * Filter which SourceCodeEmbading to delete.
+     */
+    where: SourceCodeEmbadingWhereUniqueInput
+  }
+
+  /**
+   * SourceCodeEmbading deleteMany
+   */
+  export type SourceCodeEmbadingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SourceCodeEmbadings to delete
+     */
+    where?: SourceCodeEmbadingWhereInput
+    /**
+     * Limit how many SourceCodeEmbadings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SourceCodeEmbading without action
+   */
+  export type SourceCodeEmbadingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SourceCodeEmbading
+     */
+    select?: SourceCodeEmbadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SourceCodeEmbading
+     */
+    omit?: SourceCodeEmbadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SourceCodeEmbadingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5712,6 +6898,17 @@ export namespace Prisma {
   };
 
   export type CommitScalarFieldEnum = (typeof CommitScalarFieldEnum)[keyof typeof CommitScalarFieldEnum]
+
+
+  export const SourceCodeEmbadingScalarFieldEnum: {
+    id: 'id',
+    fileName: 'fileName',
+    sourceCode: 'sourceCode',
+    summary: 'summary',
+    projectId: 'projectId'
+  };
+
+  export type SourceCodeEmbadingScalarFieldEnum = (typeof SourceCodeEmbadingScalarFieldEnum)[keyof typeof SourceCodeEmbadingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5886,6 +7083,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
     userToProjects?: UserToProjectListRelationFilter
     commits?: CommitListRelationFilter
+    sourceCodeEmbedding?: SourceCodeEmbadingListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -5897,6 +7095,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     userToProjects?: UserToProjectOrderByRelationAggregateInput
     commits?: CommitOrderByRelationAggregateInput
+    sourceCodeEmbedding?: SourceCodeEmbadingOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -5911,6 +7110,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
     userToProjects?: UserToProjectListRelationFilter
     commits?: CommitListRelationFilter
+    sourceCodeEmbedding?: SourceCodeEmbadingListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -6076,6 +7276,61 @@ export namespace Prisma {
     summary?: StringWithAggregatesFilter<"Commit"> | string
   }
 
+  export type SourceCodeEmbadingWhereInput = {
+    AND?: SourceCodeEmbadingWhereInput | SourceCodeEmbadingWhereInput[]
+    OR?: SourceCodeEmbadingWhereInput[]
+    NOT?: SourceCodeEmbadingWhereInput | SourceCodeEmbadingWhereInput[]
+    id?: StringFilter<"SourceCodeEmbading"> | string
+    fileName?: StringFilter<"SourceCodeEmbading"> | string
+    sourceCode?: StringFilter<"SourceCodeEmbading"> | string
+    summary?: StringFilter<"SourceCodeEmbading"> | string
+    projectId?: StringFilter<"SourceCodeEmbading"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type SourceCodeEmbadingOrderByWithRelationInput = {
+    id?: SortOrder
+    fileName?: SortOrder
+    sourceCode?: SortOrder
+    summary?: SortOrder
+    projectId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type SourceCodeEmbadingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SourceCodeEmbadingWhereInput | SourceCodeEmbadingWhereInput[]
+    OR?: SourceCodeEmbadingWhereInput[]
+    NOT?: SourceCodeEmbadingWhereInput | SourceCodeEmbadingWhereInput[]
+    fileName?: StringFilter<"SourceCodeEmbading"> | string
+    sourceCode?: StringFilter<"SourceCodeEmbading"> | string
+    summary?: StringFilter<"SourceCodeEmbading"> | string
+    projectId?: StringFilter<"SourceCodeEmbading"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type SourceCodeEmbadingOrderByWithAggregationInput = {
+    id?: SortOrder
+    fileName?: SortOrder
+    sourceCode?: SortOrder
+    summary?: SortOrder
+    projectId?: SortOrder
+    _count?: SourceCodeEmbadingCountOrderByAggregateInput
+    _max?: SourceCodeEmbadingMaxOrderByAggregateInput
+    _min?: SourceCodeEmbadingMinOrderByAggregateInput
+  }
+
+  export type SourceCodeEmbadingScalarWhereWithAggregatesInput = {
+    AND?: SourceCodeEmbadingScalarWhereWithAggregatesInput | SourceCodeEmbadingScalarWhereWithAggregatesInput[]
+    OR?: SourceCodeEmbadingScalarWhereWithAggregatesInput[]
+    NOT?: SourceCodeEmbadingScalarWhereWithAggregatesInput | SourceCodeEmbadingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SourceCodeEmbading"> | string
+    fileName?: StringWithAggregatesFilter<"SourceCodeEmbading"> | string
+    sourceCode?: StringWithAggregatesFilter<"SourceCodeEmbading"> | string
+    summary?: StringWithAggregatesFilter<"SourceCodeEmbading"> | string
+    projectId?: StringWithAggregatesFilter<"SourceCodeEmbading"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     imageUrl?: string | null
@@ -6166,6 +7421,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     userToProjects?: UserToProjectCreateNestedManyWithoutProjectInput
     commits?: CommitCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -6177,6 +7433,7 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     userToProjects?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -6188,6 +7445,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userToProjects?: UserToProjectUpdateManyWithoutProjectNestedInput
     commits?: CommitUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -6199,6 +7457,7 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userToProjects?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -6370,6 +7629,61 @@ export namespace Prisma {
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingCreateInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
+    summary: string
+    project: ProjectCreateNestedOneWithoutSourceCodeEmbeddingInput
+  }
+
+  export type SourceCodeEmbadingUncheckedCreateInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
+    summary: string
+    projectId: string
+  }
+
+  export type SourceCodeEmbadingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneRequiredWithoutSourceCodeEmbeddingNestedInput
+  }
+
+  export type SourceCodeEmbadingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingCreateManyInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
+    summary: string
+    projectId: string
+  }
+
+  export type SourceCodeEmbadingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6563,7 +7877,17 @@ export namespace Prisma {
     none?: CommitWhereInput
   }
 
+  export type SourceCodeEmbadingListRelationFilter = {
+    every?: SourceCodeEmbadingWhereInput
+    some?: SourceCodeEmbadingWhereInput
+    none?: SourceCodeEmbadingWhereInput
+  }
+
   export type CommitOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SourceCodeEmbadingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6686,6 +8010,30 @@ export namespace Prisma {
     summary?: SortOrder
   }
 
+  export type SourceCodeEmbadingCountOrderByAggregateInput = {
+    id?: SortOrder
+    fileName?: SortOrder
+    sourceCode?: SortOrder
+    summary?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type SourceCodeEmbadingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fileName?: SortOrder
+    sourceCode?: SortOrder
+    summary?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type SourceCodeEmbadingMinOrderByAggregateInput = {
+    id?: SortOrder
+    fileName?: SortOrder
+    sourceCode?: SortOrder
+    summary?: SortOrder
+    projectId?: SortOrder
+  }
+
   export type UserToProjectCreateNestedManyWithoutUserInput = {
     create?: XOR<UserToProjectCreateWithoutUserInput, UserToProjectUncheckedCreateWithoutUserInput> | UserToProjectCreateWithoutUserInput[] | UserToProjectUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutUserInput | UserToProjectCreateOrConnectWithoutUserInput[]
@@ -6762,6 +8110,13 @@ export namespace Prisma {
     connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
   }
 
+  export type SourceCodeEmbadingCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput> | SourceCodeEmbadingCreateWithoutProjectInput[] | SourceCodeEmbadingUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SourceCodeEmbadingCreateOrConnectWithoutProjectInput | SourceCodeEmbadingCreateOrConnectWithoutProjectInput[]
+    createMany?: SourceCodeEmbadingCreateManyProjectInputEnvelope
+    connect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+  }
+
   export type UserToProjectUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
@@ -6774,6 +8129,13 @@ export namespace Prisma {
     connectOrCreate?: CommitCreateOrConnectWithoutProjectInput | CommitCreateOrConnectWithoutProjectInput[]
     createMany?: CommitCreateManyProjectInputEnvelope
     connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+  }
+
+  export type SourceCodeEmbadingUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput> | SourceCodeEmbadingCreateWithoutProjectInput[] | SourceCodeEmbadingUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SourceCodeEmbadingCreateOrConnectWithoutProjectInput | SourceCodeEmbadingCreateOrConnectWithoutProjectInput[]
+    createMany?: SourceCodeEmbadingCreateManyProjectInputEnvelope
+    connect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -6808,6 +8170,20 @@ export namespace Prisma {
     deleteMany?: CommitScalarWhereInput | CommitScalarWhereInput[]
   }
 
+  export type SourceCodeEmbadingUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput> | SourceCodeEmbadingCreateWithoutProjectInput[] | SourceCodeEmbadingUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SourceCodeEmbadingCreateOrConnectWithoutProjectInput | SourceCodeEmbadingCreateOrConnectWithoutProjectInput[]
+    upsert?: SourceCodeEmbadingUpsertWithWhereUniqueWithoutProjectInput | SourceCodeEmbadingUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SourceCodeEmbadingCreateManyProjectInputEnvelope
+    set?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    disconnect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    delete?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    connect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    update?: SourceCodeEmbadingUpdateWithWhereUniqueWithoutProjectInput | SourceCodeEmbadingUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SourceCodeEmbadingUpdateManyWithWhereWithoutProjectInput | SourceCodeEmbadingUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SourceCodeEmbadingScalarWhereInput | SourceCodeEmbadingScalarWhereInput[]
+  }
+
   export type UserToProjectUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<UserToProjectCreateWithoutProjectInput, UserToProjectUncheckedCreateWithoutProjectInput> | UserToProjectCreateWithoutProjectInput[] | UserToProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserToProjectCreateOrConnectWithoutProjectInput | UserToProjectCreateOrConnectWithoutProjectInput[]
@@ -6834,6 +8210,20 @@ export namespace Prisma {
     update?: CommitUpdateWithWhereUniqueWithoutProjectInput | CommitUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: CommitUpdateManyWithWhereWithoutProjectInput | CommitUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: CommitScalarWhereInput | CommitScalarWhereInput[]
+  }
+
+  export type SourceCodeEmbadingUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput> | SourceCodeEmbadingCreateWithoutProjectInput[] | SourceCodeEmbadingUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SourceCodeEmbadingCreateOrConnectWithoutProjectInput | SourceCodeEmbadingCreateOrConnectWithoutProjectInput[]
+    upsert?: SourceCodeEmbadingUpsertWithWhereUniqueWithoutProjectInput | SourceCodeEmbadingUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SourceCodeEmbadingCreateManyProjectInputEnvelope
+    set?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    disconnect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    delete?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    connect?: SourceCodeEmbadingWhereUniqueInput | SourceCodeEmbadingWhereUniqueInput[]
+    update?: SourceCodeEmbadingUpdateWithWhereUniqueWithoutProjectInput | SourceCodeEmbadingUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SourceCodeEmbadingUpdateManyWithWhereWithoutProjectInput | SourceCodeEmbadingUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SourceCodeEmbadingScalarWhereInput | SourceCodeEmbadingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUserToProjectsInput = {
@@ -6876,6 +8266,20 @@ export namespace Prisma {
     upsert?: ProjectUpsertWithoutCommitsInput
     connect?: ProjectWhereUniqueInput
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutCommitsInput, ProjectUpdateWithoutCommitsInput>, ProjectUncheckedUpdateWithoutCommitsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutSourceCodeEmbeddingInput = {
+    create?: XOR<ProjectCreateWithoutSourceCodeEmbeddingInput, ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSourceCodeEmbeddingInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutSourceCodeEmbeddingNestedInput = {
+    create?: XOR<ProjectCreateWithoutSourceCodeEmbeddingInput, ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSourceCodeEmbeddingInput
+    upsert?: ProjectUpsertWithoutSourceCodeEmbeddingInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutSourceCodeEmbeddingInput, ProjectUpdateWithoutSourceCodeEmbeddingInput>, ProjectUncheckedUpdateWithoutSourceCodeEmbeddingInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7148,6 +8552,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SourceCodeEmbadingCreateWithoutProjectInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
+    summary: string
+  }
+
+  export type SourceCodeEmbadingUncheckedCreateWithoutProjectInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
+    summary: string
+  }
+
+  export type SourceCodeEmbadingCreateOrConnectWithoutProjectInput = {
+    where: SourceCodeEmbadingWhereUniqueInput
+    create: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SourceCodeEmbadingCreateManyProjectInputEnvelope = {
+    data: SourceCodeEmbadingCreateManyProjectInput | SourceCodeEmbadingCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserToProjectUpsertWithWhereUniqueWithoutProjectInput = {
     where: UserToProjectWhereUniqueInput
     update: XOR<UserToProjectUpdateWithoutProjectInput, UserToProjectUncheckedUpdateWithoutProjectInput>
@@ -7196,6 +8624,33 @@ export namespace Prisma {
     summary?: StringFilter<"Commit"> | string
   }
 
+  export type SourceCodeEmbadingUpsertWithWhereUniqueWithoutProjectInput = {
+    where: SourceCodeEmbadingWhereUniqueInput
+    update: XOR<SourceCodeEmbadingUpdateWithoutProjectInput, SourceCodeEmbadingUncheckedUpdateWithoutProjectInput>
+    create: XOR<SourceCodeEmbadingCreateWithoutProjectInput, SourceCodeEmbadingUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SourceCodeEmbadingUpdateWithWhereUniqueWithoutProjectInput = {
+    where: SourceCodeEmbadingWhereUniqueInput
+    data: XOR<SourceCodeEmbadingUpdateWithoutProjectInput, SourceCodeEmbadingUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type SourceCodeEmbadingUpdateManyWithWhereWithoutProjectInput = {
+    where: SourceCodeEmbadingScalarWhereInput
+    data: XOR<SourceCodeEmbadingUpdateManyMutationInput, SourceCodeEmbadingUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type SourceCodeEmbadingScalarWhereInput = {
+    AND?: SourceCodeEmbadingScalarWhereInput | SourceCodeEmbadingScalarWhereInput[]
+    OR?: SourceCodeEmbadingScalarWhereInput[]
+    NOT?: SourceCodeEmbadingScalarWhereInput | SourceCodeEmbadingScalarWhereInput[]
+    id?: StringFilter<"SourceCodeEmbading"> | string
+    fileName?: StringFilter<"SourceCodeEmbading"> | string
+    sourceCode?: StringFilter<"SourceCodeEmbading"> | string
+    summary?: StringFilter<"SourceCodeEmbading"> | string
+    projectId?: StringFilter<"SourceCodeEmbading"> | string
+  }
+
   export type UserCreateWithoutUserToProjectsInput = {
     id?: string
     imageUrl?: string | null
@@ -7231,6 +8686,7 @@ export namespace Prisma {
     githubUrl: string
     deletedAt?: Date | string | null
     commits?: CommitCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutUserToProjectsInput = {
@@ -7241,6 +8697,7 @@ export namespace Prisma {
     githubUrl: string
     deletedAt?: Date | string | null
     commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutUserToProjectsInput = {
@@ -7300,6 +8757,7 @@ export namespace Prisma {
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     commits?: CommitUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutUserToProjectsInput = {
@@ -7310,6 +8768,7 @@ export namespace Prisma {
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateWithoutCommitsInput = {
@@ -7320,6 +8779,7 @@ export namespace Prisma {
     githubUrl: string
     deletedAt?: Date | string | null
     userToProjects?: UserToProjectCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutCommitsInput = {
@@ -7330,6 +8790,7 @@ export namespace Prisma {
     githubUrl: string
     deletedAt?: Date | string | null
     userToProjects?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutCommitsInput = {
@@ -7356,6 +8817,7 @@ export namespace Prisma {
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userToProjects?: UserToProjectUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutCommitsInput = {
@@ -7366,6 +8828,67 @@ export namespace Prisma {
     githubUrl?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userToProjects?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
+    sourceCodeEmbedding?: SourceCodeEmbadingUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutSourceCodeEmbeddingInput = {
+    id?: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    githubUrl: string
+    deletedAt?: Date | string | null
+    userToProjects?: UserToProjectCreateNestedManyWithoutProjectInput
+    commits?: CommitCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput = {
+    id?: string
+    createdAt?: Date | string
+    updateAt?: Date | string
+    name: string
+    githubUrl: string
+    deletedAt?: Date | string | null
+    userToProjects?: UserToProjectUncheckedCreateNestedManyWithoutProjectInput
+    commits?: CommitUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutSourceCodeEmbeddingInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutSourceCodeEmbeddingInput, ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput>
+  }
+
+  export type ProjectUpsertWithoutSourceCodeEmbeddingInput = {
+    update: XOR<ProjectUpdateWithoutSourceCodeEmbeddingInput, ProjectUncheckedUpdateWithoutSourceCodeEmbeddingInput>
+    create: XOR<ProjectCreateWithoutSourceCodeEmbeddingInput, ProjectUncheckedCreateWithoutSourceCodeEmbeddingInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutSourceCodeEmbeddingInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutSourceCodeEmbeddingInput, ProjectUncheckedUpdateWithoutSourceCodeEmbeddingInput>
+  }
+
+  export type ProjectUpdateWithoutSourceCodeEmbeddingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    githubUrl?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userToProjects?: UserToProjectUpdateManyWithoutProjectNestedInput
+    commits?: CommitUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutSourceCodeEmbeddingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    githubUrl?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userToProjects?: UserToProjectUncheckedUpdateManyWithoutProjectNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserToProjectCreateManyUserInput = {
@@ -7412,6 +8935,13 @@ export namespace Prisma {
     commitAuthorName: string
     commitAuthorAvatar: string
     commitDate: Date | string
+    summary: string
+  }
+
+  export type SourceCodeEmbadingCreateManyProjectInput = {
+    id?: string
+    fileName: string
+    sourceCode: string
     summary: string
   }
 
@@ -7469,6 +8999,27 @@ export namespace Prisma {
     commitAuthorName?: StringFieldUpdateOperationsInput | string
     commitAuthorAvatar?: StringFieldUpdateOperationsInput | string
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SourceCodeEmbadingUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    sourceCode?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
   }
 

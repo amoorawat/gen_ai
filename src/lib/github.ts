@@ -53,8 +53,6 @@ export const pullCommit = async (projectId: string) => {
     commitHashes,
   );
 
-  console.log("UNPROCESSED COMMITS:", unprocessedCommit.length);
-  console.log("UNPROCESSED COMMITS DATA:", unprocessedCommit);
 
   const summaryResponse = await Promise.allSettled(
     unprocessedCommit.map((commit) => {
@@ -93,10 +91,7 @@ async function summariseCommit(githubUrl: string, commitHash: string) {
       },
     });
 
-    console.log("DIFF LENGTH:", data.length);
-
     const summary = await aiSummariseCommit(data);
-    console.log("AI SUMMARY:", summary);
 
     return summary || "";
   } catch (error) {

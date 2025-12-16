@@ -4,6 +4,7 @@ import { useProject } from "@/hooks/use-project";
 import { ExternalLink, Github, GithubIcon } from "lucide-react";
 import Link from "next/link";
 import CommitLog from "./commit-log";
+import AskQuestionCard from "./ask-question-card";
 
 export default function page() {
   const { project } = useProject();
@@ -38,8 +39,8 @@ export default function page() {
       </div>
 
         <div className="mt-4">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
-                AskQuestionCard 
+            <div className="grid grid-cols-7 gap-4 sm:grid-cols-5">
+                <AskQuestionCard /> 
                 MeetingCard
 
             </div>
